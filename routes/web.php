@@ -15,8 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/aboutus', function () {
-    return view('aboutus');
+Route::get('/news', function () {
+    return view('news');
+});
+
+
+Route::get('/about', function () {
+    return view('about');
 });
 
 Route::get('/contact', function () {
