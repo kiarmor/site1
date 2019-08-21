@@ -10,6 +10,7 @@
         <a href="/news">News</a>
         <a href="/about">About Us</a>
         <a href="contact">Contact</a><br>
+        <a href="/home">Login</a>
 
 
         @yield('content')
