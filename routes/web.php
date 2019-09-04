@@ -10,31 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-
-    $tasks = [
-      'Go to gym',
-      'Go to store',
-      'Go to sleep'
-    ];
-
-    return view('welcome')->withTasks($tasks);
-});
-
-Route::get('/news', function () {
-    return view('news');
-});
+Route::get('/', 'PagesController@home' );
 
 
-Route::get('/about', function () {
-    return view('about');
-});
+Route::get('/news', 'PagesController@news');
 
-Route::get('/contact', function () {
-    return view('contact');
-});
 
+Route::get('/about', 'PagesController@about');
+
+Route::get('/contact', 'PagesController@contact');
 
 Auth::routes();
 
