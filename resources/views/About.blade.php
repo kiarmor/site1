@@ -5,5 +5,5 @@
 
 
 @section('content')
-    About us page
+    <p>About us page</p>
 @endsection

@@ -5,7 +5,7 @@
 
 
 @section('content')
-    Contact form.
+    <p>Contact form.</p>
 @endsection
 
 

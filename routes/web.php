@@ -12,7 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $tasks = [
+      'Go to gym',
+      'Go to store',
+      'Go to sleep'
+    ];
+
+    return view('welcome')->withTasks($tasks);
 });
 
 Route::get('/news', function () {
@@ -27,6 +34,7 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+
 
 Auth::routes();
 

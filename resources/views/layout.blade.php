@@ -15,6 +15,10 @@
 
         @yield('content')
 
+
+        <a href="/">How to find us.</a>
+
+
 </body>
 </html>
 

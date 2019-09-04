@@ -4,5 +4,5 @@
 @section('title', 'News')
 
 @section('content')
-    News!!!
+    <p>News!!!</p>
 @endsection
