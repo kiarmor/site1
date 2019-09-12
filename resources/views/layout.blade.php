@@ -9,8 +9,10 @@
         <a href="/">Home page</a>
         <a href="/news">News</a>
         <a href="/about">About Us</a>
-        <a href="contact">Contact</a><br>
+        <a href="contact">Contact</a>
         <a href="/home">Login</a>
+
+
 
 
         @yield('content')

@@ -35,7 +35,7 @@ class PostController
 
     public function store()
     {
-        
+        return response()->json(['data' => 'post handled']);
     }
 
     public function destroy($postId, \Request $request)

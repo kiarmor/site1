@@ -20,6 +20,6 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
-        'http://localhost:8000/posts/*' //repair error '419 Page Expired'
+        'http://localhost:8000/posts' //repair error '419 Page Expired'
     ];
 }
