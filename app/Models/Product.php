@@ -1,15 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Anonimus
- * Date: 10.09.2019
- * Time: 15:56
- */
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 
-class Product
+class Product extends Model
 {
 
 }

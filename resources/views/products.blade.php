@@ -1,7 +1,8 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Anonimus
- * Date: 12.09.2019
- * Time: 21:21
- */
+
+@extends('layout')
+
+@section('title', 'Products')
+
+@section('content')
+    <p>This is our products.</p>
+@endsection

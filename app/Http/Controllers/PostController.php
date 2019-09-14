@@ -7,39 +7,54 @@
  */
 
 namespace App\Http\Controllers;
-use App\Models\Post;
+use App\Http\Requests\Post\CreatePostRequest;
+use App\Http\Requests\Post\GetPostRequest;
+use App\Http\Services\PostService;
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 
 class PostController
 {
-    public function index()
+    private $postService;
+
+    public function __construct(PostService $postService)
     {
-        $posts = Post::all();
-        return response()->json($posts);
+        $this->postService = $postService;
+    }
+    
+    public function index(GetPostRequest $request, Post $post)
+    {
+        return view('posts', [
+            'posts' => $this->postService->getPostsList($request)
+        ]);
     }
 
     public function show($postId)
     {
-         $post = Post::findOrFail($postId);
-         return response()->json($post);
+        $post = $this->postService->getPost($postId);
+
+        return view('posts', [
+            'posts' => $post
+        ]);
     }
 
     public function update($postId, Request $request)
     {
-        $post = Post::findOrFail($postId);
-        $post->name = $request->input('name', 'Unknown');
-        $post->save();
-        return response()->json($post);
+        $post = $this->postService->updatePost($request, $postId);
+
+        return $post;
     }
 
-    public function store()
+    public function store(CreatePostRequest $request)
     {
-        return response()->json(['data' => 'post handled']);
+        $this->postService->createPost($request);
+
+        return redirect('/posts');
     }
 
     public function destroy($postId, \Request $request)
     {
-        
+        $this->postService->deletePost($postId);
     }
 }
