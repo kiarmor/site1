@@ -32,10 +32,12 @@ class PostController
 
     public function show($postId)
     {
-        $post = $this->postService->getPost($postId);
+        $post = $this->postService->getPost($postId)->toArray();
+        //var_dump($post[$postId]['name']); die;
+        $post = $post[$postId - 1];
 
-        return view('posts', [
-            'posts' => $post
+        return view('post', [
+            'post' => $post
         ]);
     }
 

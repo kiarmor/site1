@@ -19,7 +19,7 @@
             <tbody>
                 @foreach($posts as $post)
                     <tr>
-                        <td>{{$post['id']}}</td>
+                        <td><a href="http://localhost:8000/posts/{{$post['id']}}">{{$post['id']}}</a></td>
                         <td>{{$post['name']}}</td>
                         <td>{{$post['user_id']}}</td>
                     </tr>

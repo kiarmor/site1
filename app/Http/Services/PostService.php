@@ -53,7 +53,7 @@ class PostService
     {
         $post = Post::query()->findOrFail($postId)->get();
 
-        return $post[$postId];
+        return $post;
         //return $post;
     }
 
