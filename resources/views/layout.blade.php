@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
         <title>@yield('title')</title>
+
+    <!-- Подключаем Bootstrap CSS -->
+    {{--<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />--}}
+
 </head>
 <body>
 
