@@ -4,7 +4,7 @@
         <title>@yield('title')</title>
 
     <!-- Подключаем Bootstrap CSS -->
-    {{--<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />--}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
 
 </head>
 <body>
