@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,10 @@ class ProductController
     public function index()
     {
         $products = Product::all();
-        return view('products', ['products' => $products]);
+
+        return view('products', [
+            'products' => $products
+        ]);
     }
 
     public function show($productId)

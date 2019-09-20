@@ -22,6 +22,8 @@ Route::resource('/posts', 'PostController');
 
 Route::resource('/products', 'ProductController');
 
+Route::resource('/categories', 'CategoriesController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

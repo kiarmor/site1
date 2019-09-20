@@ -11,13 +11,13 @@
             <thead>
             <th>ID</th>
             <th>Product</th>
-            <th>Category</th>
+            <th > <a href="http://localhost:8000/categories">Categories</a></th>
             </thead>
             <tbody>
             @foreach($products as $product)
                 <tr>
-                    <td><a href="http://localhost:8000/posts/{{$product['id']}}">{{$product['id']}}</a></td>
-                    <td>{{$product['name']}}</td>
+                    <td>{{$product['id']}}</td>
+                    <td><a href="http://localhost:8000/products/{{$product['id']}}">{{$product['name']}}</a></td>
                     <td>{{$product['category_id']}}</td>
                 </tr>
             @endforeach
