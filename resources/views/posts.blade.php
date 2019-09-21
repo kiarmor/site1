@@ -19,9 +19,9 @@
             <tbody>
                 @foreach($posts as $post)
                     <tr>
-                        <td><a href="http://localhost:8000/posts/{{$post['id']}}">{{$post['id']}}</a></td>
-                        <td>{{$post['name']}}</td>
-                        <td>{{$post['user_id']}}</td>
+                        <td>{{$post['id']}}</td>
+                        <td><a href="http://localhost:8000/posts/{{$post['id']}}">{{$post['name']}}</a></td>
+                        <td>{{$users[$post['user_id'] - 1]['name']}}</td>
                     </tr>
                 @endforeach
             </tbody>

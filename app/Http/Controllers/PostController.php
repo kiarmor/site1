@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Post\CreatePostRequest;
 use App\Http\Requests\Post\GetPostRequest;
 use App\Http\Services\PostService;
+use App\User;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
@@ -25,15 +26,17 @@ class PostController
     
     public function index(GetPostRequest $request, Post $post)
     {
+        $users = User::all();
+
         return view('posts', [
-            'posts' => $this->postService->getPostsList($request)
+            'posts' => $this->postService->getPostsList($request),
+            'users' => $users
         ]);
     }
 
     public function show($postId)
     {
         $post = $this->postService->getPost($postId)->toArray();
-        //var_dump($post[$postId]['name']); die;
         $post = $post[$postId - 1];
 
         return view('post', [

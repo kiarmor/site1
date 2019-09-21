@@ -11,9 +11,11 @@ class ProductController
     public function index()
     {
         $products = Product::all();
+        $categories = Category::all();
 
         return view('products', [
-            'products' => $products
+            'products' => $products,
+            'categories' => $categories
         ]);
     }
 

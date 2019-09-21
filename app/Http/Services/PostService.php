@@ -6,7 +6,6 @@ use App\Http\Requests\Post\CreatePostRequest;
 use App\Http\Requests\Post\GetPostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
-//use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Collection;
 
 
@@ -54,7 +53,6 @@ class PostService
         $post = Post::query()->findOrFail($postId)->get();
 
         return $post;
-        //return $post;
     }
 
     public function deletePost(int $postId)
