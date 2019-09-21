@@ -18,7 +18,8 @@
                 <tr>
                     <td>{{$product['id']}}</td>
                     <td><a href="http://localhost:8000/products/{{$product['id']}}">{{$product['name']}}</a></td>
-               {{--остановился здесь--}}     <TODO><td><a href="http://localhost:8000/categories/{{$categories[$product['category_id'] - 1]}}">{{$categories[$product['category_id'] - 1]['category_name']}}</a></td></TODO>
+                    <td><a href="http://localhost:8000/categories/{{--сделать переход на
+                    страницу категории--}}">{{$categories[$product['category_id'] - 1]['category_name']}}</a></td>
                 </tr>
             @endforeach
             </tbody>

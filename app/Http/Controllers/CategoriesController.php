@@ -12,4 +12,12 @@ class CategoriesController extends Controller
         $categories = Category::all();
         return view('categories', ['categories' => $categories]);
     }
+
+    public function show($category_id)
+    {
+        $category = Category::findOrFail($category_id);
+        return view('categories', [
+            'categories' => $category
+        ]);
+    }
 }

@@ -21,10 +21,12 @@ class ProductController
 
     public function show($productId)
     {
-        /*$post = Post::findOrFail($postId);
-        return response()->json($post);*/
+        $product = Product::findOrFail($productId);
+        //dd($product);die;
+        return view('product', [
+            'product' => $product
+        ]);
     }
-
     public function update($productId, Request $request)
     {
         /*$post = Post::findOrFail($postId);
