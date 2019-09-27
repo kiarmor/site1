@@ -21,7 +21,7 @@ class PostService
             $queryBuilder->where('user_id', '=', $user_id);
         }
 
-        if ($searchString = array_get($data, 'query')){
+        if ($searchString = array_get($data, 'q')){
             $queryBuilder->where('name', 'LIKE', "%$searchString%");
         }
 

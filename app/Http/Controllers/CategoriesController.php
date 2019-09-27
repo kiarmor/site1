@@ -20,4 +20,19 @@ class CategoriesController extends Controller
             'categories' => $category
         ]);
     }
+
+    public function update($categoryId, Request $request)
+    {
+
+    }
+
+    public function store()
+    {
+
+    }
+
+    public function destroy($categoryId, \Request $request)
+    {
+
+    }
 }

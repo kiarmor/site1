@@ -24,7 +24,7 @@ class GetPostRequest extends FormRequest
     public function rules()
     {
         return [
-            'query' => ['string', 'min: 1'],
+            'q' => ['string', 'min: 1'],
             'user_id' => ['integer', 'min: 1']
         ];
     }

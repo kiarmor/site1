@@ -22,7 +22,6 @@ class ProductController
     public function show($productId)
     {
         $product = Product::findOrFail($productId);
-        //dd($product);die;
         return view('product', [
             'product' => $product
         ]);
