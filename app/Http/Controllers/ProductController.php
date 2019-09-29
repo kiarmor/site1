@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController
 {
     public function index()
     {
-        $products = Product::all();
+        //$products = Product::all();
+        $products = DB::table('products')->paginate(10);
         $categories = Category::all();
 
         return view('products', [
