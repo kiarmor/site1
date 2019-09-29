@@ -1,7 +1,7 @@
 
 @extends('layout')
 
-@section('title', 'News')
+@section('title', 'Contacts')
 
 @section('content')
     <p>Contact us.</p>

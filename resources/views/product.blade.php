@@ -11,14 +11,14 @@
             <thead>
             <th>ID</th>
             <th>Product</th>
-            <th>Category</th>
+            <th>Description</th>
             </thead>
             <tbody>
             <tr>
-                <td><a href="http://localhost:8000/products/{{$product['id']}}">{{$product['id']}}</a></td>
+                <td>{{$product['id']}}</td>
                 <td>{{$product['name']}}</td>
-                {{--<td>{{$product['']}}</td>--}}
-                <a>bla</a>
+                <td><a>{{$product['description']}}</a></td>
+                <a>Product.blade</a>
             </tr>
             </tbody>
         </table>
