@@ -11,14 +11,23 @@ class ProductController
 {
     public function index()
     {
-        //$products = Product::all();
         $products = DB::table('products')->paginate(10);
         $categories = Category::all();
 
         return view('products', [
             'products' => $products,
-            'categories' => $categories
+            'categories' => $categories,
         ]);
+    }
+
+    public function store()
+    {
+
+    }
+
+    public function create()
+    {
+
     }
 
     public function show($productId)
@@ -28,6 +37,7 @@ class ProductController
             'product' => $product
         ]);
     }
+
     public function update($productId, Request $request)
     {
         /*$post = Post::findOrFail($postId);
@@ -36,13 +46,15 @@ class ProductController
         return response()->json($post);*/
     }
 
-    public function store()
-    {
-        //return response()->json(['data' => 'post handled']);
-    }
-
     public function destroy($productId, \Request $request)
     {
 
+    }
+
+    public function edit($productId, \Request $request)
+    {
+        $product = Product::findOrFail($productId);
+
+        return (view('edit', compact('product')));
     }
 }

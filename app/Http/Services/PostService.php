@@ -31,8 +31,14 @@ class PostService
     public function createPost(CreatePostRequest $request): Post
     {
         $post = new Post();
+        if ($user = $request->user()) {
+            $post->name = $request->input('name', $request->name);
+            $post->user_id = $request->user()->id;
+            $post->save();
+            return $post;
+        }
         $post->name = $request->input('name', $request->name);
-        $post->user_id = $request->user()->id;
+        $post->user_id = '3';
         $post->save();
 
         return $post;
