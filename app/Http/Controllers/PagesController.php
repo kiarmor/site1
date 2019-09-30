@@ -29,9 +29,11 @@ class PagesController extends Controller
 
     public function contact()
     {
-        //$products = productRepository->get->findAll;
-
-
         return view('contact');
+    }
+
+    public function admin()
+    {
+        return view('admin');
     }
 }
