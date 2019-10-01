@@ -25,7 +25,5 @@
             </tbody>
         </table>
     </div>
-    <div>
-        <a href="/products/{{$product->id}}/edit">Edit</a>
-    </div>
+
 @endsection

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class PagesController extends Controller
 {
@@ -34,6 +35,17 @@ class PagesController extends Controller
 
     public function admin()
     {
-        return view('admin');
+        return view('Admin.admin');
+    }
+
+    public function index()
+    {
+        $products = DB::table('products')->paginate(10);
+        $categories = Category::all();
+
+        return view('products.edit_products', [
+            'products' => $products,
+            'categories' => $categories,
+        ]);
     }
 }

@@ -27,7 +27,20 @@ class CategoriesController extends Controller
 
     public function update($categoryId, Request $request)
     {
+        $category = Category::findOrFail($categoryId);
 
+
+        $category->category_name = request('category_name');
+        $category->save();
+
+        return redirect('/admin/edit_products');
+    }
+
+    public function edit($categoryId, \Request $request)
+    {
+        $category = Category::findOrFail($categoryId);
+
+        return (view('categories.edit_category', compact('category')));
     }
 
     public function store()
@@ -37,6 +50,8 @@ class CategoriesController extends Controller
 
     public function destroy($categoryId, \Request $request)
     {
+       Category::findOrFail($categoryId)->delete();
 
+       return redirect('/admin/edit_products');
     }
 }

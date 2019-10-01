@@ -49,7 +49,7 @@ class ProductController
 
         $product->save();
 
-        return redirect('/products');
+        return redirect('/admin/edit_products');
     }
 
     public function destroy($productId, \Request $request)
@@ -66,4 +66,5 @@ class ProductController
 
         return (view('edit', compact('product')));
     }
+
 }

@@ -26,6 +26,8 @@ Route::resource('/categories', 'CategoriesController');
 
 Route::get('/admin', 'PagesController@admin')->middleware('admin');
 
+Route::resource('/admin/edit_products', 'PagesController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
