@@ -11,7 +11,7 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('categories', [
+        return view('categories.categories', [
             'categories' => $categories,
         ]);
     }
@@ -20,7 +20,7 @@ class CategoriesController extends Controller
     {
         $products = Product::all()->where('category_id', $category_id);
 
-        return view('category', [
+        return view('categories.category', [
             'products' => $products,
         ]);
     }

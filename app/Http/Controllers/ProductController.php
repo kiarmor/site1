@@ -14,7 +14,7 @@ class ProductController
         $products = DB::table('products')->paginate(10);
         $categories = Category::all();
 
-        return view('products', [
+        return view('products.products', [
             'products' => $products,
             'categories' => $categories,
         ]);
@@ -33,7 +33,7 @@ class ProductController
     public function show($productId)
     {
         $product = Product::findOrFail($productId);
-        return view('product', [
+        return view('products.product', [
             'product' => $product
         ]);
     }
@@ -45,6 +45,7 @@ class ProductController
         $product->name = request('name');
         $product->category_id = request('category_id');
         $product->description = request('description');
+        $product->price = request('price');
 
         $product->save();
 

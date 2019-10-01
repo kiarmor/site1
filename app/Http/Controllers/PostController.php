@@ -28,7 +28,7 @@ class PostController
     {
         $users = User::all();
 
-        return view('posts', [
+        return view('posts.posts', [
             'posts' => $this->postService->getPostsList($request),
             'users' => $users
         ]);
@@ -39,7 +39,7 @@ class PostController
         $post = $this->postService->getPost($postId)->toArray();
         $post = $post[$postId - 1];
 
-        return view('post', [
+        return view('posts.post', [
             'post' => $post
         ]);
     }

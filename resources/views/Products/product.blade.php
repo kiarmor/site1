@@ -12,12 +12,14 @@
             <th>ID</th>
             <th>Product</th>
             <th>Description</th>
+            <th>Price</th>
             </thead>
             <tbody>
             <tr>
                 <td>{{$product['id']}}</td>
                 <td>{{$product['name']}}</td>
                 <td><a>{{$product['description']}}</a></td>
+                <td>{{$product->price}}</td>
                 <a>Product.blade</a>
             </tr>
             </tbody>
