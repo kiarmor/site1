@@ -15,7 +15,7 @@ class PostService
     {
         $data = $request->validated();// in $data array only that key, that we define in GetPostRequest class in method rules
 
-        $queryBuilder = Post::query();
+        $queryBuilder = Post::query()->orderByDesc('id');
 
         if($user_id = array_get($data, 'user_id')){
             $queryBuilder->where('user_id', '=', $user_id);
@@ -31,8 +31,14 @@ class PostService
     public function createPost(CreatePostRequest $request): Post
     {
         $post = new Post();
+        if ($user = $request->user()) {
+            $post->name = $request->input('name', $request->name);
+            $post->user_id = $request->user()->id;
+            $post->save();
+            return $post;
+        }
         $post->name = $request->input('name', $request->name);
-        $post->user_id = $request->user()->id;
+        $post->user_id = '3';
         $post->save();
 
         return $post;

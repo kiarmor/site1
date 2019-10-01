@@ -18,7 +18,7 @@
                     <td><a href="http://localhost:8000/posts/{{$post['id']}}">{{$post['id']}}</a></td>
                     <td>{{$post['name']}}</td>
                     <td>{{$post['user_id']}}</td>
-                    <a>bla bla bla</a>
+                    <a>Post.blade.php</a>
                 </tr>
             </tbody>
         </table>
