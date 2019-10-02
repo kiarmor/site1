@@ -50,6 +50,7 @@ class ProductController
         $product->save();
 
         return redirect('/admin/edit_products');
+
     }
 
     public function destroy($productId, \Request $request)

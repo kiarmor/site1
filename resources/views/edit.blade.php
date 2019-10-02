@@ -22,7 +22,9 @@
             <label class="label" for="category_id">Category</label>
 
             <div class="control">
+
                 <input type="number" max="7" class="input" name="category_id" placeholder="Category_id" value="{{$product->category_id}}">
+
             </div>
         </div>
 
@@ -35,6 +37,7 @@
         </div>
 
         <div class="field">
+
             <label class="label" for="price">Price</label>
 
             <div class="control">

@@ -31,6 +31,7 @@ class PagesController extends Controller
     public function contact()
     {
         return view('contact');
+
     }
 
     public function admin()
@@ -47,5 +48,7 @@ class PagesController extends Controller
             'products' => $products,
             'categories' => $categories,
         ]);
+
     }
+
 }
