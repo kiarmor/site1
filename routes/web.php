@@ -28,6 +28,8 @@ Route::get('/admin', 'PagesController@admin')->middleware('admin');
 
 Route::resource('/admin/edit_products', 'PagesController');
 
+Route::resource('/admin/edit_posts', 'PostController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

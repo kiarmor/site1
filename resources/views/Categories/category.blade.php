@@ -24,7 +24,3 @@
         </table>
     </div>
 @endsection
-
-
-
-git add
