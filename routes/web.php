@@ -28,6 +28,8 @@ Route::get('/admin', 'PagesController@admin')->middleware('admin');
 
 Route::resource('/admin/edit_products', 'PagesController');
 
+Route::get('search', 'SearchController@show');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
