@@ -4,7 +4,7 @@
 @section('title', 'Products')
 
 @section('content')
-    <p>Searcheble</p>
+    <p>Searchable</p>
 
     <div class="container">
         <table class="table">
@@ -17,17 +17,15 @@
             <tbody>
         @foreach($qq as $q)
             <tr>
-                <td>{{$q->name}}</td>
-                <td><a{{-- href="/products/{{$product->id}}"--}}>{{$q->description}}</a></td>
-                <td><a{{-- href="/categories/{{$categories[$product->category_id - 1]["id"]}}"--}}>{{$q->price}}</a></td>
-                <td>{{$q->category_id}}</td>
+                <td><a href="/products/{{$q->id}}">{{$q->name}}</a></td>
+                <td><a>{{$q->description}}</a></td>
+                <td>{{$q->price}}</td>
+                <td>{{$categories[$q->category_id - 1]['category_name']}}</td>
             </tr>
         @endforeach
             </tbody>
         </table>
-
     </div>
-
 
 @endsection
 

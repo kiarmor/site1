@@ -13,6 +13,7 @@ use App\Http\Services\PostService;
 use App\User;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 
 class PostController
@@ -27,10 +28,12 @@ class PostController
     public function index(GetPostRequest $request, Post $post)
     {
         $users = User::all();
+        $auth = Auth::user();
 
         return view('posts.posts', [
             'posts' => $this->postService->getPostsList($request),
-            'users' => $users
+            'users' => $users,
+            'auth' => $auth,
         ]);
     }
 
@@ -61,5 +64,6 @@ class PostController
     public function destroy($postId, \Request $request)
     {
         $this->postService->deletePost($postId);
+        return redirect('/posts');
     }
 }

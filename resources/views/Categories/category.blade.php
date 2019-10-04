@@ -17,7 +17,7 @@
             @foreach($products as $product)
                 <tr>
                     <td>{{$product['id']}}</td>
-                    <td><a href="http://localhost:8000/products/{{$product['id']}}">{{$product['name']}}</a></td>
+                    <td><a href="/products/{{$product['id']}}">{{$product['name']}}</a></td>
                 </tr>
             @endforeach
             </tbody>

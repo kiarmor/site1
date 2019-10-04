@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use App\Models\Category;
 
 class SearchController extends Controller
 {
@@ -17,7 +18,11 @@ class SearchController extends Controller
     {
         $search = Input::get('search');
         $qq = Product::where('name','LIKE','%'.$search.'%')->get();
+        $categories = Category::all();
 
-        return view('Products.search', compact('qq'));
+        return view('Products.search', [
+            'qq' => $qq,
+            'categories' => $categories,
+            ]);
     }
 }

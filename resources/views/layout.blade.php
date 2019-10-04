@@ -19,7 +19,22 @@
         <a href="/home">Login</a>
 
 
+        <form method="GET" action="/search">
+                <div class="field">
 
+                        <label class="label" for="search">Search</label>
+
+                        <div class="control">
+                                <input type="text" class="search" name="search" placeholder="search product">
+                        </div>
+                </div>
+                <div class="field">
+
+                        <div class="control">
+                                <button type="submit" class="button">Search product</button>
+                        </div>
+                </div>
+        </form>
 
 
         @yield('content')
