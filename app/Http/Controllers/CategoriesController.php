@@ -5,16 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoriesController extends Controller
 {
     public function index()
     {
         $categories = Category::all();
+        $auth = Auth::user();
 
         return view('categories.categories', [
 
             'categories' => $categories,
+            'auth' => $auth,
         ]);
     }
 
@@ -37,7 +40,7 @@ class CategoriesController extends Controller
         $category->category_name = request('category_name');
         $category->save();
 
-        return redirect('/admin/edit_products');
+        return redirect('/categories');
     }
 
     public function edit($categoryId, \Request $request)
@@ -56,12 +59,17 @@ class CategoriesController extends Controller
     {
        Category::findOrFail($categoryId)->delete();
 
-       return redirect('/admin/edit_products');
+       return redirect('/products');
     }
 
-    public function create()
+    public function create(\Request $request)
     {
-        dd('Create category');
-    }
+            $cat = request('category_name');
+            if (isset($cat)) {
+                $category = Category::firstOrNew(['category_name' => $cat])->save();
+                return redirect('/categories');
+            }
 
+        return view('Categories.create_category');
+    }
 }

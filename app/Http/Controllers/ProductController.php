@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\ProductService;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -10,6 +11,12 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController
 {
+    private $productService;
+    public function __construct(ProductService $productService)
+    {
+        $this->productService = $productService;
+    }
+
     public function index()
     {
         $products = DB::table('products')->paginate(10);
@@ -23,14 +30,17 @@ class ProductController
         ]);
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        $categories = Category::all();
+        $this->productService->createProduct($request);
+
+        return redirect('/products');
 
     }
 
     public function create()
     {
-        dd('Create product');
     }
 
     public function show($productId)
@@ -54,7 +64,7 @@ class ProductController
 
         $product->save();
 
-        return redirect('/admin/edit_products');
+        return redirect('/products');
 
     }
 
@@ -69,8 +79,13 @@ class ProductController
     public function edit($productId, \Request $request)
     {
         $product = Product::findOrFail($productId);
+        $categories = Category::all();
 
-        return (view('edit', compact('product')));
+
+        return view('products.edit_products',[
+            'product' => $product,
+            'categories' => $categories,
+        ]);
     }
 
 }

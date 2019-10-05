@@ -17,6 +17,11 @@
         <a href="/posts">Posts</a>
         <a href="/products">Products</a>
         <a href="/home">Login</a>
+        @if(isset($auth))
+                @if($auth->role == 1)
+                        <a href="/admin">Admin panel</a>
+                @endif
+        @endif
 
 
         <form method="GET" action="/search">

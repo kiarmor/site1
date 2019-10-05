@@ -28,7 +28,7 @@
 
     </form>
 
-    <form method="POST" action="/products/{{$category->id}}">
+    <form method="POST" action="/categories/{{$category->id}}">
     @method('DELETE')
     @csrf
 

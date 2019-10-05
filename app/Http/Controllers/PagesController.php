@@ -55,4 +55,13 @@ class PagesController extends Controller
         ]);
 
     }
+
+    public function showForm()
+    {
+        //TODO: remove  create_products.blade and do all in products/create
+        $categories = Category::all();
+        return view('products.create_products', [
+            'categories' => $categories,
+            ]);
+    }
 }
