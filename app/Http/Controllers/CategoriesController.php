@@ -58,4 +58,10 @@ class CategoriesController extends Controller
 
        return redirect('/admin/edit_products');
     }
+
+    public function create()
+    {
+        dd('Create category');
+    }
+
 }

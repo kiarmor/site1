@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ProductController
@@ -13,10 +14,12 @@ class ProductController
     {
         $products = DB::table('products')->paginate(10);
         $categories = Category::all();
+        $auth = Auth::user();
 
         return view('products.products', [
             'products' => $products,
             'categories' => $categories,
+            'auth' => $auth,
         ]);
     }
 
@@ -27,14 +30,16 @@ class ProductController
 
     public function create()
     {
-
+        dd('Create product');
     }
 
     public function show($productId)
     {
         $product = Product::findOrFail($productId);
+        $auth = Auth::user();
         return view('products.product', [
-            'product' => $product
+            'product' => $product,
+            'auth' => $auth,
         ]);
     }
 

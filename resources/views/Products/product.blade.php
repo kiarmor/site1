@@ -4,8 +4,8 @@
 @section('title', 'Product')
 
 @section('content')
-    <p>Product</p>
 
+    <a>Product.blade</a>
     <div class="container">
         <table class="table">
             <thead>
@@ -22,10 +22,16 @@
                 <td><a>{{$product['description']}}</a></td>
                 <td>{{$product->price}}</td>
 
-                <a>Product.blade</a>
+
             </tr>
             </tbody>
         </table>
+
+        @if(isset($auth))
+        @if($auth->role == 1)
+            <a href="/products/{{$product->id}}/edit">Edit </a>
+        @endif
+        @endif
     </div>
 
 @endsection

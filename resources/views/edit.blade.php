@@ -23,7 +23,7 @@
 
             <div class="control">
 
-                <input type="number" max="7" class="input" name="category_id" placeholder="Category_id" value="{{$product->category_id}}">
+                <input type="number" min="1" max="7" class="input" name="category_id" placeholder="Category_id" value="{{$product->category_id}}">
 
             </div>
         </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PagesController extends Controller
@@ -14,8 +15,12 @@ class PagesController extends Controller
             'Go to store',
             'Go to sleep'
         ];
+        $auth = Auth::user();
 
-        return view('welcome')->withTasks($tasks);
+        return view('welcome', [
+            'auth' => $auth,
+            'tasks' => $tasks,
+        ]);
     }
 
     public function news()

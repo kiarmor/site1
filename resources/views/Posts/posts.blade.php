@@ -14,12 +14,32 @@
             <thead>
                 <th>Post</th>
                 <th>User name</th>
+                <th></th>
             </thead>
             <tbody>
                 @foreach($posts as $post)
                     <tr>
-                        <td><a href="http://localhost:8000/posts/{{$post['id']}}">{{$post['name']}}</a></td>
+                        <td><a href="/posts/{{$post['id']}}">{{$post['name']}}</a></td>
                         <td>{{$users[$post['user_id'] - 1]['name']}}</td>
+                        <td>
+                            @if(isset($auth))
+                            @if($auth->role == 1)
+
+                                <form method="POST" action="/posts/{{$post->id}}">
+                                    @method('DELETE')
+                                    @csrf
+
+                                    <div class="field">
+
+                                        <div class="control">
+                                            <button type="submit" class="button">Delete</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            @endif
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

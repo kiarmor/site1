@@ -30,6 +30,8 @@ Route::resource('/admin/edit_products', 'PagesController');
 
 Route::resource('/admin/edit_posts', 'PostController');
 
+Route::get('search', 'SearchController@show');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
