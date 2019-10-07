@@ -3,15 +3,14 @@
 <head>
         <title>@yield('title')</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/5f81828b2c.js" crossorigin="anonymous"></script>
 
-   {{-- <!-- Подключаем Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />--}}
         @yield('styles')
 
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
@@ -29,9 +28,7 @@
                         <li class="nav-item">
                                 <a class="nav-link" href="/products">Products</a>
                         </li>
-                        <li class="nav-item">
-                                <a class="nav-link" href="/home">Login</a>
-                        </li>
+
                         @if(isset($auth))
                                 @if($auth->role == 1)
                                         <li class="nav-item">
@@ -39,46 +36,35 @@
                                         </li>
                                 @endif
                         @endif
-                        {{--<li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Dropdown
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                        </li>
-                        <li class="nav-item">
-                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                        </li>--}}
+
                 </ul>
                 <form class="form-inline my-2 my-lg-0"  method="GET" action="/search">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
+
+            <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-user-circle"></i> User account
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item"href="/home">Login</a>
+                                        <a class="dropdown-item" href="/register">Register</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                        </li>
+                        <li class="nav-item">
+                                <a class="nav-link " href="#" tabindex="-1" aria-disabled="true"><i class="fas fa-shopping-cart"></i> Shopping cart</a>
+                        </li>
+            </ul>
         </div>
 </nav>
-       {{-- <form method="GET" action="/search">
-                <div class="field">
+       <div class="container">
+       @yield('content')
 
-                        <label class="label" for="search">Search</label>
-
-                        <div class="control">
-                                <input type="text" class="search" name="search" placeholder="search product">
-                        </div>
-                </div>
-                <div class="field">
-
-                        <div class="control">
-                                <button type="submit" class="button">Search product</button>
-                        </div>
-                </div>
-        </form>--}}
-
-
-        @yield('content')
+       </div>
 
 
 
