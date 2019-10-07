@@ -9,8 +9,10 @@
 namespace App\Http\Services;
 
 
+use App\Http\Requests\CreateCategoryRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Exceptions;
 use Illuminate\Http\Request;
 
 class CategoryService
@@ -22,10 +24,10 @@ class CategoryService
         return $categories;
     }
 
-    public function createCategory (Request $request)
+    public function createCategory (CreateCategoryRequest $request)
     {
         $category = new Category();
-        $category->name = request('name');
+        $category->category_name = request('category_name');
         $category->save();
 
         return $category;
@@ -49,6 +51,19 @@ class CategoryService
 
     public function deleteCategory(int $categoryId)
     {
-        Category::query()->findOrFail($categoryId)->delete();
+        try {
+            Category::query()->findOrFail($categoryId)->delete();
+        }
+        catch (\Exception $e) {
+
+            /*if ($e->errorInfo[1] == 1451) {
+               dd('Cannot delete a parent row');
+            }*/
+
+            //Exceptions\Handler::render();
+
+            abort('404', 'can\'t');
+
+        }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateProductRequest;
 use App\Http\Services\ProductService;
 use App\Models\Category;
 use App\Models\Product;
@@ -31,7 +32,7 @@ class ProductController
        ]);
     }
 
-    public function store(Request $request)
+    public function store(CreateProductRequest $request)
     {
         $categories = Category::all();
         $this->productService->createProduct($request);

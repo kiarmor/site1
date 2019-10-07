@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Category\CreateCategoryRequest;
+use App\Http\Requests\CreateCategoryRequest;
 use App\Http\Services\CategoryService;
 use App\Models\Category;
 use App\Models\Product;
@@ -65,17 +65,6 @@ class CategoriesController extends Controller
     {
         $this->categoryService->deleteCategory($categoryId);
 
-        return redirect('/products');
+        return redirect('/categories');
     }
-
-    /*public function create(Request $request)
-    {
-            $cat = request('category_name');
-            if (isset($cat)) {
-                $category = Category::query()->firstOrNew(['category_name' => $cat])->save();
-                return redirect('/categories');
-            }
-
-        return view('Categories.create_category');
-    }*/
 }

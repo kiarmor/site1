@@ -9,6 +9,7 @@
 namespace App\Http\Services;
 
 
+use App\Http\Requests\CreateProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,7 +23,7 @@ class ProductService
         return $products;
     }
     
-    public function createProduct(Request $request)
+    public function createProduct(CreateProductRequest $request)
     {
         $product = new Product();
         $product->name = request('name');

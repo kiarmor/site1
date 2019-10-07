@@ -6,6 +6,10 @@
 
     <h1 class="h1">Create product</h1>
 
+    @if(isset($_REQUEST['error']))
+        <span style="color: red">{{$_REQUEST['error']}}</span>
+    @endif
+
     <form method="POST" action="/products">
         @csrf
 
