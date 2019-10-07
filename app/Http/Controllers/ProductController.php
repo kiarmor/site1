@@ -7,11 +7,12 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+
 
 class ProductController
 {
     private $productService;
+
     public function __construct(ProductService $productService)
     {
         $this->productService = $productService;
@@ -19,15 +20,15 @@ class ProductController
 
     public function index()
     {
-        $products = DB::table('products')->paginate(10);
-        $categories = Category::all();
-        $auth = Auth::user();
+       $products = $this->productService->getProductsList();
+       $categories = Category::all();
+       $auth = Auth::user();
 
-        return view('products.products', [
+       return view('products.products', [
             'products' => $products,
             'categories' => $categories,
             'auth' => $auth,
-        ]);
+       ]);
     }
 
     public function store(Request $request)
@@ -45,8 +46,9 @@ class ProductController
 
     public function show($productId)
     {
-        $product = Product::findOrFail($productId);
-        $auth = Auth::user();
+       $product = $this->productService->getProduct($productId);
+       $auth = Auth::user();
+
         return view('products.product', [
             'product' => $product,
             'auth' => $auth,
@@ -55,14 +57,7 @@ class ProductController
 
     public function update($productId, Request $request)
     {
-        $product = Product::findOrFail($productId);
-
-        $product->name = request('name');
-        $product->category_id = request('category_id');
-        $product->description = request('description');
-        $product->price = request('price');
-
-        $product->save();
+        $product = $this->productService->updateProduct($request, $productId);
 
         return redirect('/products');
 
@@ -70,15 +65,15 @@ class ProductController
 
     public function destroy($productId, \Request $request)
     {
-        Product::findOrFail($productId)->delete();
+       $this->productService->deleteProduct($productId);
 
-        return redirect('/products');
+       return redirect('/products');
 
     }
 
     public function edit($productId, \Request $request)
     {
-        $product = Product::findOrFail($productId);
+        $product = $this->productService->getProduct($productId);
         $categories = Category::all();
 
 
