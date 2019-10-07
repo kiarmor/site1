@@ -17,13 +17,13 @@ class PostService
 
         $queryBuilder = Post::query()->orderByDesc('id');
 
-        if($user_id = array_get($data, 'user_id')){
+       /* if($user_id = array_get($data, 'user_id')){
             $queryBuilder->where('user_id', '=', $user_id);
         }
 
         if ($searchString = array_get($data, 'q')){
             $queryBuilder->where('name', 'LIKE', "%$searchString%");
-        }
+        }*/
 
         return $queryBuilder->get();
     }
@@ -56,7 +56,7 @@ class PostService
 
     public function getPost(int $postId)//: ?Post
     {
-        $post = Post::query()->findOrFail($postId)->get();
+        $post = Post::query()->findOrFail($postId);
 
         return $post;
     }

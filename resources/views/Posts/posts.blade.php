@@ -46,6 +46,7 @@
         </table>
 
         <form action="/posts" method="POST">
+            @csrf
             <input type="text" name="name" class="form-control">
             <input type="submit" class="btn btn-success" value="Create">
         </form>

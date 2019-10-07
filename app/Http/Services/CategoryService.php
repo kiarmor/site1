@@ -24,7 +24,12 @@ class CategoryService
 
     public function createCategory (Request $request)
     {
-       //TODO: nothing to do
+        $category = new Category();
+        $category->name = request('name');
+        $category->save();
+
+        return $category;
+
     }
 
     public function updateCategory(Request $request, int $categoryId)

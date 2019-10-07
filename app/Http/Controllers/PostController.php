@@ -39,8 +39,7 @@ class PostController
 
     public function show($postId)
     {
-        $post = $this->postService->getPost($postId)->toArray();
-        $post = $post[$postId - 1];
+        $post = $this->postService->getPost($postId);
 
         return view('posts.post', [
             'post' => $post

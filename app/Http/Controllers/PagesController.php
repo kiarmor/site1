@@ -56,12 +56,17 @@ class PagesController extends Controller
 
     }
 
-    public function showForm()
+    public function createProductForm()
     {
         //TODO: remove  create_products.blade and do all in products/create
         $categories = Category::all();
         return view('products.create_products', [
             'categories' => $categories,
             ]);
+    }
+
+    public function createCategoryForm()
+    {
+        return view('categories.create_category');
     }
 }

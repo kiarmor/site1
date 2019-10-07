@@ -32,7 +32,9 @@ Route::resource('/admin/edit_posts', 'PostController');
 
 Route::get('search', 'SearchController@show');
 
-Route::get('/create_products', 'PagesController@showForm');
+Route::get('/create_products', 'PagesController@createProductForm');
+
+Route::get('/create_category', 'PagesController@createCategoryForm');
 
 Auth::routes();
 

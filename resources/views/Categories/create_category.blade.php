@@ -4,9 +4,10 @@
 
 @section('content')
 
-    <h1 class="h1">Create category !!</h1>
+    <h1 class="h1">Create category</h1>
 
-    <form method="GET" action="/categories/create">
+    <form method="POST" action="/categories">
+        @csrf
 
         <div class="field">
             <label class="label" for="category_name">Category name</label>
