@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\CategoryService;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -9,9 +10,16 @@ use Illuminate\Support\Facades\Auth;
 
 class CategoriesController extends Controller
 {
+    private $categoryService;
+
+    public function __construct(CategoryService $categoryService)
+    {
+        $this->categoryService = $categoryService;
+    }
+
     public function index()
     {
-        $categories = Category::all();
+        $categories = $this->categoryService->getCategoryList();
         $auth = Auth::user();
 
         return view('categories.categories', [
@@ -21,10 +29,9 @@ class CategoriesController extends Controller
         ]);
     }
 
-    public function show($category_id)
+    public function show($categoryId)
     {
-        $products = Product::all()->where('category_id', $category_id);
-
+        $products = $this->categoryService->getCategory($categoryId);
 
         return view('categories.category', [
 
@@ -32,13 +39,9 @@ class CategoriesController extends Controller
         ]);
     }
 
-    public function update($categoryId, Request $request)
+    public function update(Request $request, $categoryId)
     {
-        $category = Category::findOrFail($categoryId);
-
-
-        $category->category_name = request('category_name');
-        $category->save();
+        $this->categoryService->updateCategory($request, $categoryId);
 
         return redirect('/categories');
     }
@@ -57,12 +60,12 @@ class CategoriesController extends Controller
 
     public function destroy($categoryId, \Request $request)
     {
-       Category::findOrFail($categoryId)->delete();
+        $this->categoryService->deleteCategory($categoryId);
 
-       return redirect('/products');
+        return redirect('/products');
     }
 
-    public function create(\Request $request)
+    public function create(Request $request)
     {
             $cat = request('category_name');
             if (isset($cat)) {
