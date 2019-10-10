@@ -87,13 +87,27 @@ class ProductController
     public function addToCart(Request $request, $productId)
     {
         $product = Product::query()->findOrFail($productId);
-        $oldCart = Session::has('cart') ?: Session::get('cart');
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->add($product, $product->id);
 
         $request->session()->put('cart', $cart);
         return redirect('/products');
 
+    }
+
+    public function getCart()
+    {
+        if (!Session::has('cart')){
+            return redirect()->back();
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+
+        return view('products.shoppingCart', [
+            'products' => $cart->items,
+            'totalPrice' => $cart->totalPrice,
+        ]);
     }
 
 }

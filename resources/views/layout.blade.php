@@ -69,7 +69,9 @@
                                 </div>
                         </li>
                         <li class="nav-item">
-                                <a class="nav-link " href="#" tabindex="-1" aria-disabled="true"><i class="fas fa-shopping-cart"></i> Shopping cart</a>
+                                <a class="nav-link " href="/shopping_cart" tabindex="-1" aria-disabled="true">
+                                    <i class="fas fa-shopping-cart"></i> Shopping cart <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
+                                </a>
                         </li>
             </ul>
         </div>

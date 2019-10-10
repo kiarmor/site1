@@ -50,6 +50,8 @@ Route::get('add_to_cart/{id}', [
     'as' => 'product.addToCart'
 ]);
 
+Route::get('/shopping_cart', 'ProductController@getCart');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
