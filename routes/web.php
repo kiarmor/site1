@@ -20,21 +20,35 @@ Route::get('/contact', 'PagesController@contact');
 
 Route::resource('/posts', 'PostController');
 
-Route::resource('/products', 'ProductController');
+Route::get('/products', 'ProductController@index');
+Route::get('/products/{id}', 'ProductController@show');
 
-Route::resource('/categories', 'CategoriesController');
+Route::get('/categories', 'CategoriesController@index');
+Route::get('/categories/{id}', 'CategoriesController@show');
 
-Route::get('/admin', 'PagesController@admin')->middleware('admin');
+Route::group(['middleware' => 'admin'], function (){
 
-Route::resource('/admin/edit_products', 'PagesController');
+    Route::get('/admin', 'PagesController@admin');
 
-Route::resource('/admin/edit_posts', 'PostController');
+    Route::get('/create_products', 'PagesController@createProductForm');
+    Route::get('/products/{id}/edit', 'ProductController@edit');
+    Route::patch('/products/{id}', 'ProductController@update');
+    Route::post('/products', 'ProductController@store');
+    Route::delete('/products/{id}', 'ProductController@destroy');
+
+    Route::get('/create_category', 'PagesController@createCategoryForm');
+    Route::get('/categories/{id}/edit', 'CategoriesController@edit');
+    Route::patch('/categories/{id}', 'CategoriesController@update');
+    Route::post('/categories', 'CategoriesController@store');
+    Route::delete('/categories/{id}', 'CategoriesController@destroy');
+});
 
 Route::get('search', 'SearchController@show');
 
-Route::get('/create_products', 'PagesController@createProductForm');
-
-Route::get('/create_category', 'PagesController@createCategoryForm');
+Route::get('add_to_cart/{id}', [
+    'uses' => 'ProductController@addToCart',
+    'as' => 'product.addToCart'
+]);
 
 Auth::routes();
 

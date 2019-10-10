@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Services\ProductService;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Route;
+use Session;
 
 
 class ProductController
@@ -79,6 +82,18 @@ class ProductController
             'product' => $product,
             'categories' => $categories,
         ]);
+    }
+
+    public function addToCart(Request $request, $productId)
+    {
+        $product = Product::query()->findOrFail($productId);
+        $oldCart = Session::has('cart') ?: Session::get('cart');
+        $cart = new Cart($oldCart);
+        $cart->add($product, $product->id);
+
+        $request->session()->put('cart', $cart);
+        return redirect('/products');
+
     }
 
 }

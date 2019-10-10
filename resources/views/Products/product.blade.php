@@ -27,6 +27,8 @@
             </tbody>
         </table>
 
+        <a href="{{route('product.addToCart', ['id' => $product->id])}}" class="btn btn-success pull-right">Add</a>
+
         @if(isset($auth))
         @if($auth->role == 1)
             <a href="/products/{{$product->id}}/edit">Edit </a>

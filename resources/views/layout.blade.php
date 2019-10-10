@@ -49,10 +49,23 @@
                                     <i class="fas fa-user-circle"></i> User account
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                    @if(Auth::check())
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                        @else
                                         <a class="dropdown-item"href="/home">Login</a>
                                         <a class="dropdown-item" href="/register">Register</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        @endif
+
+
                                 </div>
                         </li>
                         <li class="nav-item">
