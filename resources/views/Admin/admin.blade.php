@@ -13,6 +13,7 @@
     <br>
     <a href="/posts">Edit posts</a><br>
     <br>
+    <a href="/edit_main_page">Edit main page</a>
 
 
 @endsection

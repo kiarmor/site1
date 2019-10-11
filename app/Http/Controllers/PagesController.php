@@ -3,23 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Content;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PagesController extends Controller
 {
+
     public function home()
     {
-        $tasks = [
-            'Go to gym',
-            'Go to store',
-            'Go to sleep'
-        ];
+        $content = Content::findOrFail(1);
         $auth = Auth::user();
 
         return view('welcome', [
             'auth' => $auth,
-            'tasks' => $tasks,
+            'content' => $content,
         ]);
     }
 
@@ -69,4 +68,6 @@ class PagesController extends Controller
     {
         return view('categories.create_category');
     }
+
+
 }

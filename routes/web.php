@@ -41,6 +41,11 @@ Route::group(['middleware' => 'admin'], function (){
     Route::patch('/categories/{id}', 'CategoriesController@update');
     Route::post('/categories', 'CategoriesController@store');
     Route::delete('/categories/{id}', 'CategoriesController@destroy');
+
+    Route::get('/edit_main_page', [
+        'uses' => 'ContentController@editMainPageForm',
+        'as' => 'admin.editMainPageForm'
+    ]);
 });
 
 Route::get('search', 'SearchController@show');

@@ -4,11 +4,12 @@
 
         @section('content')
 
-            <h1>My first laravel project</h1>
 
-            @foreach($tasks as $task)
-            <li>{{$task}}</li>
-            @endforeach
+            @if(isset($content))
+                <h1>{{ $content->title }}</h1>
+                {{ $content->content }}
+            @endif
+
 
         @endsection
 
