@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class ContentController extends Controller
 {
+
     public function editMainPageForm(Request $request)
     {
         $content = Content::query()->findOrFail(1);

@@ -92,14 +92,14 @@ class ProductController
         $cart->add($product, $product->id);
 
         $request->session()->put('cart', $cart);
-        return redirect('/products');
+        return redirect()->back();
 
     }
 
     public function getCart()
     {
         if (!Session::has('cart')){
-            return redirect()->back();
+            return view('products.shoppingCart');
         }
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);

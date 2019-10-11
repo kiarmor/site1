@@ -55,6 +55,8 @@ Route::get('add_to_cart/{id}', [
     'as' => 'product.addToCart'
 ]);
 
+Route::get('/buy_form', 'PagesController@buy_form');
+
 Route::get('/shopping_cart', 'ProductController@getCart');
 
 Auth::routes();

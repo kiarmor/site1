@@ -69,5 +69,14 @@ class PagesController extends Controller
         return view('categories.create_category');
     }
 
+    public function buy_form()
+    {
+        return view('products.buy_form');
+    }
 
+    public function sendMail()
+    {
+
+
+    }
 }
