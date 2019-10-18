@@ -14,6 +14,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
+use Mockery\Exception;
 
 
 class PostController
@@ -27,22 +28,25 @@ class PostController
     
     public function index(GetPostRequest $request, Post $post)
     {
-        $users = User::all();
-        $auth = Auth::user();
+            $users = User::all();
+            $auth = Auth::user();
 
-        return view('posts.posts', [
-            'posts' => $this->postService->getPostsList($request),
-            'users' => $users,
-            'auth' => $auth,
-        ]);
+            return view('posts.posts', [
+                'posts' => $this->postService->getPostsList($request),
+                'users' => $users,
+                'auth' => $auth,
+            ]);
     }
 
     public function show($postId)
     {
         $post = $this->postService->getPost($postId);
+        $users = User::all();
+
 
         return view('posts.post', [
-            'post' => $post
+            'post' => $post,
+            'users' => $users,
         ]);
     }
 

@@ -7,15 +7,15 @@ use App\Http\Requests\Post\GetPostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 
 
 class PostService
 {
-    public function getPostsList(GetPostRequest $request): Collection
+    public function getPostsList(GetPostRequest $request)
     {
         $data = $request->validated();// in $data array only that key, that we define in GetPostRequest class in method rules
-
-        $queryBuilder = Post::query()->orderByDesc('id');
+        $queryBuilder = DB::table('posts')->orderByDesc('id')->paginate(10);
 
        /* if($user_id = array_get($data, 'user_id')){
             $queryBuilder->where('user_id', '=', $user_id);
@@ -25,7 +25,7 @@ class PostService
             $queryBuilder->where('name', 'LIKE', "%$searchString%");
         }*/
 
-        return $queryBuilder->get();
+        return $queryBuilder;
     }
 
     public function createPost(CreatePostRequest $request): Post

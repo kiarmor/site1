@@ -74,9 +74,4 @@ class PagesController extends Controller
         return view('products.buy_form');
     }
 
-    public function sendMail()
-    {
-
-
-    }
 }

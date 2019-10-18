@@ -110,4 +110,16 @@ class ProductController
         ]);
     }
 
+   /* public function saveCart(Request $request)
+    {
+        if (!Session::has('cart')){
+            return view('products.shoppingCart');
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        $t = $request->get('name');
+
+        dd($t);
+    }*/
+
 }

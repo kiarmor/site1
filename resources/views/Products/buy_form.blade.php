@@ -9,7 +9,7 @@
 
             <div class="col">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" placeholder="First name" required>
+                <input name="name" type="text" class="form-control" placeholder="First name" required>
             </div>
 
             <div class="col">
@@ -28,6 +28,8 @@
         </div>
         <hr>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <a href="/success" type="button" class="btn btn-success">Buy</a>
+        </div>
     </form>
 @endsection

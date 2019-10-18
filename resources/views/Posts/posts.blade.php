@@ -19,8 +19,8 @@
             <tbody>
                 @foreach($posts as $post)
                     <tr>
-                        <td><a href="/posts/{{$post['id']}}">{{$post['name']}}</a></td>
-                        <td>{{$users[$post['user_id'] - 1]['name']}}</td>
+                        <td><a href="/posts/{{$post->id}}">{{$post->name}}</a></td>
+                        <td>{{$users[$post->user_id - 1]->name}}</td>
                         <td>
                             @if(isset($auth))
                             @if($auth->role == 1)
@@ -44,6 +44,8 @@
                 @endforeach
             </tbody>
         </table>
+
+            {{$posts->links()}}
 
         <form action="/posts" method="POST">
             @csrf

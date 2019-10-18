@@ -22,7 +22,7 @@
                                     <li><a href="#">Remove all</a></li>
                                 </ul>
                             </div>
-                            <span  class="" >In cart {{ $product['qty'] }} products of this type</span>
+                            <span  class="" >In cart <b>{{ $product['qty'] }}</b> products of this type</span>
                         </li>
                     @endforeach
                 </ul>

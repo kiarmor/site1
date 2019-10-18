@@ -13,6 +13,7 @@
             <th>Product</th>
             <th></th>
             <th>Price</th>
+            <th></th>
             <th > <a href="/categories">Categories</a></th>
             </thead>
             <tbody>
@@ -29,6 +30,7 @@
 
                     </td>
                     <td>{{$product->price}}</td>
+                    <td><a href="{{route('product.addToCart', ['id' => $product->id])}}" class="btn btn-success pull-right">Add</a></td>
                     <td><a href="/categories/{{$categories[$product->category_id - 1]["id"]}}">{{$categories[$product->category_id - 1]['category_name']}}</a></td>
                 </tr>
             @endforeach

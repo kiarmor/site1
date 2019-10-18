@@ -17,7 +17,7 @@
                 <tr>
                     <td>{{$post->id}}</td>
                     <td>{{$post->name}}</td>
-                    <td>{{$post->user_id}}</td>
+                    <td>{{$users[($post->user_id) - 1]->name}}</td>
                     <a>Post.blade.php</a>
                 </tr>
             </tbody>
