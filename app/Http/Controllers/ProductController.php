@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Route;
 use Session;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class ProductController
@@ -24,9 +25,14 @@ class ProductController
 
     public function index()
     {
-       $products = $this->productService->getProductsList();
-       $categories = Category::all();
-       $auth = Auth::user();
+        try {
+            $products = $this->productService->getProductsList();
+            $categories = Category::all();
+            $auth = Auth::user();
+        }
+        catch (\Exception $e){
+            return abort(500);
+        }
 
        return view('products.products', [
             'products' => $products,

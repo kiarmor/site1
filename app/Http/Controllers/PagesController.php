@@ -13,8 +13,13 @@ class PagesController extends Controller
 
     public function home()
     {
-        $content = Content::findOrFail(1);
-        $auth = Auth::user();
+        try{
+            $content = Content::findOrFail(1);
+            $auth = Auth::user();
+        }
+        catch (\Exception $e){
+            return abort(500);
+        }
 
         return view('welcome', [
             'auth' => $auth,
@@ -45,8 +50,13 @@ class PagesController extends Controller
 
     public function index()
     {
-        $products = DB::table('products')->paginate(10);
-        $categories = Category::all();
+        try {
+            $products = DB::table('products')->paginate(10);
+            $categories = Category::all();
+        }
+        catch (\Exception $e){
+            return abort(500);
+        }
 
         return view('products.edit_products', [
             'products' => $products,
