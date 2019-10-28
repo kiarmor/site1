@@ -9,7 +9,4 @@
                 <h1>{{ $content->title }}</h1>
                 {{ $content->content }}
             @endif
-
-
-        @endsection
-
+@endsection

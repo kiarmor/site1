@@ -31,7 +31,9 @@ class ProductController
             $auth = Auth::user();
         }
         catch (\Exception $e){
-            return abort(500);
+            return view('Errors.error', [
+                'error' => 'DB connection fail.'
+            ]);
         }
 
        return view('products.products', [
@@ -43,8 +45,15 @@ class ProductController
 
     public function store(CreateProductRequest $request)
     {
+        try{
         $categories = Category::all();
         $this->productService->createProduct($request);
+        }
+        catch (\Exception $e){
+            return view('Errors.error', [
+                'error' => 'Can not create product'
+            ]);
+        }
 
         return redirect('/products');
 
@@ -53,8 +62,15 @@ class ProductController
 
     public function show($productId)
     {
+        try{
        $product = $this->productService->getProduct($productId);
        $auth = Auth::user();
+        }
+        catch (\Exception $e){
+            return view('Errors.error', [
+                'error' => 'DB connection fail.'
+            ]);
+        }
 
         return view('products.product', [
             'product' => $product,
@@ -64,7 +80,14 @@ class ProductController
 
     public function update($productId, Request $request)
     {
+        try{
         $product = $this->productService->updateProduct($request, $productId);
+        }
+        catch (\Exception $e){
+            return view('Errors.error', [
+                'error' => 'Cant update product'
+            ]);
+        }
 
         return redirect('/products');
 
@@ -72,7 +95,14 @@ class ProductController
 
     public function destroy($productId, \Request $request)
     {
+        try{
        $this->productService->deleteProduct($productId);
+        }
+        catch (\Exception $e){
+            return view('Errors.error', [
+                'error' => 'Cant delete product'
+            ]);
+        }
 
        return redirect('/products');
 
@@ -80,8 +110,15 @@ class ProductController
 
     public function edit($productId, \Request $request)
     {
+        try{
         $product = $this->productService->getProduct($productId);
         $categories = Category::all();
+        }
+        catch (\Exception $e){
+            return view('Errors.error', [
+                'error' => 'Cant edit product'
+            ]);
+        }
 
 
         return view('products.edit_products',[
@@ -92,14 +129,21 @@ class ProductController
 
     public function addToCart(Request $request, $productId)
     {
+        try{
         $product = Product::query()->findOrFail($productId);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->add($product, $product->id);
 
         $request->session()->put('cart', $cart);
-        return redirect()->back();
+        }
+        catch (\Exception $e){
+            return view('Errors.error', [
+                'error' => 'Add to cart Fail.'
+            ]);
+        }
 
+        return redirect()->back();
     }
 
     public function getCart()
@@ -107,6 +151,7 @@ class ProductController
         if (!Session::has('cart')){
             return view('products.shoppingCart');
         }
+
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
 
@@ -115,17 +160,4 @@ class ProductController
             'totalPrice' => $cart->totalPrice,
         ]);
     }
-
-   /* public function saveCart(Request $request)
-    {
-        if (!Session::has('cart')){
-            return view('products.shoppingCart');
-        }
-        $oldCart = Session::get('cart');
-        $cart = new Cart($oldCart);
-        $t = $request->get('name');
-
-        dd($t);
-    }*/
-
 }

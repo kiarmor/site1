@@ -30,9 +30,10 @@ class PostController
     {
             $users = User::all();
             $auth = Auth::user();
+            $posts = $this->postService->getPostsList($request);
 
             return view('posts.posts', [
-                'posts' => $this->postService->getPostsList($request),
+                'posts' => $posts,
                 'users' => $users,
                 'auth' => $auth,
             ]);

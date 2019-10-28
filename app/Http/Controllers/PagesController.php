@@ -18,7 +18,9 @@ class PagesController extends Controller
             $auth = Auth::user();
         }
         catch (\Exception $e){
-            return abort(500);
+            return view('errors.error', [
+                'error' => 'Some DB connection fail'
+            ]);
         }
 
         return view('welcome', [
@@ -29,23 +31,50 @@ class PagesController extends Controller
 
     public function news()
     {
-        return view('news');
+        try {
+            return view('news1');
+        }
+        catch (\Exception $e){
+            return view('errors.error', [
+                'error' => 'File not found'
+            ]);
+        }
     }
 
     public function about()
     {
-        return view('about');
+        try {
+            return view('about');
+        }
+        catch (\Exception $e){
+            return view('errors.error', [
+                'error' => 'File not found'
+            ]);
+        }
     }
 
     public function contact()
     {
-        return view('contact');
-
+        try {
+            return view('contact');
+        }
+        catch (\Exception $e){
+            return view('errors.error', [
+                'error' => 'File not found'
+            ]);
+        }
     }
 
     public function admin()
     {
-        return view('Admin.admin');
+        try {
+            return view('Admin.admin');
+        }
+        catch (\Exception $e){
+            return view('errors.error', [
+                'error' => 'File not found'
+            ]);
+        }
     }
 
     public function index()
@@ -55,7 +84,9 @@ class PagesController extends Controller
             $categories = Category::all();
         }
         catch (\Exception $e){
-            return abort(500);
+            return view('errors.error', [
+                'error' => 'Some DB connection fail'
+            ]);
         }
 
         return view('products.edit_products', [
@@ -67,8 +98,14 @@ class PagesController extends Controller
 
     public function createProductForm()
     {
-        //TODO: remove  create_products.blade and do all in products/create
-        $categories = Category::all();
+        try {
+            $categories = Category::all();
+        }
+        catch (\Exception $e){
+            return view('errors.error', [
+                'error' => 'Some DB connection fail'
+            ]);
+        }
         return view('products.create_products', [
             'categories' => $categories,
             ]);
@@ -76,12 +113,26 @@ class PagesController extends Controller
 
     public function createCategoryForm()
     {
-        return view('categories.create_category');
+        try {
+            return view('categories.create_category');
+        }
+        catch (\Exception $e){
+            return view('errors.error', [
+                'error' => 'File not found'
+            ]);
+        }
     }
 
     public function buy_form()
     {
-        return view('products.buy_form');
+        try {
+            return view('products.buy_form');
+        }
+        catch (\Exception $e){
+            return view('errors.error', [
+                'error' => 'File not found'
+            ]);
+        }
     }
 
 }

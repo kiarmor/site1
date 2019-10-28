@@ -10,17 +10,23 @@ class ContentController extends Controller
 
     public function editMainPageForm(Request $request)
     {
-        $content = Content::query()->findOrFail(1);
-        if (!$request['content']) {
-            return view('admin.mainPage_form', [
-                'title' => $content->title,
-                'content' => $content->content,
+        try {
+            $content = Content::query()->findOrFail(1);
+            if (!$request['content']) {
+                return view('admin.mainPage_form', [
+                    'title' => $content->title,
+                    'content' => $content->content,
+                ]);
+            }
+            $content->title = request('title');
+            $content->content = request('content');
+            $content->save();
+        }
+        catch (\Exception $e){
+            return view('Errors.error', [
+                'error' => 'Cant connect to DB for edit content'
             ]);
         }
-        $content->title = request('title');
-        $content->content = request('content');
-        $content->save();
-
 
         view('/welcome', [
             'title' => $content->title,
@@ -28,5 +34,4 @@ class ContentController extends Controller
         ]);
         return redirect('/');
     }
-
 }

@@ -32,7 +32,7 @@ class CategoriesController extends Controller
 
     public function show($categoryId)
     {
-        $products = $this->categoryService->getCategory($categoryId);
+        $products = $this->categoryService->getProductsByCategory($categoryId);
 
         return view('categories.category', [
 
@@ -49,7 +49,7 @@ class CategoriesController extends Controller
 
     public function edit($categoryId, \Request $request)
     {
-        $category = Category::query()->findOrFail($categoryId);
+        $category = $this->categoryService->getCategory($categoryId);
 
         return (view('categories.edit_category', compact('category')));
     }
