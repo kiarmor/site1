@@ -192,4 +192,16 @@ class ProductController
             'message' => 'Success'
         ]);
     }
+
+    public function getAllOrders()
+    {
+        $orders = Order::all();
+        $cart = $orders->get('cart');
+        $decoded = json_decode($cart);
+
+        return view('Products.orders',[
+           'orders' => $orders,
+           'cart' => $decoded,
+        ]);
+    }
 }

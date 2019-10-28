@@ -61,6 +61,8 @@ Route::get('/shopping_cart', 'ProductController@getCart');
 
 Route::post('/buy_form', 'ProductController@saveCart')->name('postAct');
 
+Route::get('/orders', 'ProductController@getAllOrders');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -38,18 +38,5 @@
         </table>
         {{$products->links()}}
     </div>
-
-    {{--@foreach($products as $product)
-    <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title" href="/products/{{$product->id}}">{{$product->name}}</h5>
-            <p class="card-text" href="/categories/{{$categories[$product->category_id - 1]["id"]}}">{{$categories[$product->category_id - 1]['category_name']}}</p>
-            <p>{{$product->price}}</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
-    @endforeach--}}
-
 @endsection
 
