@@ -19,86 +19,43 @@ class CategoryService
 {
     public function getCategoryList()
     {
-        try {
-            $categories = Category::all();
+        $categories = Category::all();
 
-            return $categories;
-        }
-        catch (\Exception $e){
-            return view('Errors.error', [
-                'error' => 'Cant connect to DB'
-            ]);
-        }
+        return $categories;
     }
 
     public function getCategory(int $categoryId)
     {
-        try{
-            $category = Category::query()->findOrFail($categoryId);
-        }
-        catch (\Exception $e){
-            return view('Errors.error', [
-                'error' => 'Cant connect to DB'
-            ]);
-        }
+        $category = Category::query()->findOrFail($categoryId);
 
         return $category;
     }
 
     public function createCategory (CreateCategoryRequest $request)
     {
-        try{
-            $category = new Category();
-            $category->category_name = request('category_name');
-            $category->save();
-        }
-        catch (\Exception $e){
-            return view('Errors.error', [
-                'error' => 'Cant connect to DB'
-            ]);
-        }
+        $category = new Category();
+        $category->category_name = request('category_name');
+        $category->save();
 
         return $category;
     }
 
     public function updateCategory(Request $request, int $categoryId)
     {
-        try {
-            $category = Category::query()->findOrFail($categoryId);
-            $category->category_name = request('category_name');
-            $category->save();
-        }
-        catch (\Exception $e){
-            return view('Errors.error', [
-                'error' => 'Cant connect to DB'
-            ]);
-        }
+        $category = Category::query()->findOrFail($categoryId);
+        $category->category_name = request('category_name');
+        $category->save();
     }
 
     public function getProductsByCategory(int $categoryId)
     {
-        try {
-            $products = Product::all()->where('category_id', $categoryId);
-        }
-        catch (\Exception $e){
-            return view('Errors.error', [
-                'error' => 'Cant connect to DB'
-            ]);
-        }
+        $products = Product::all()->where('category_id', $categoryId);
 
-       return $products;
+        return $products;
     }
 
     public function deleteCategory(int $categoryId)
     {
-        try {
-            Category::query()->findOrFail($categoryId)->delete();
-        }
-        catch (\Exception $e) {
-
-            return view('Errors.error', [
-                'error' => 'Cant delete category'
-            ]);
-        }
+        Category::query()->findOrFail($categoryId)->delete();
     }
 }

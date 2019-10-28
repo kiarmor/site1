@@ -32,7 +32,7 @@ class PagesController extends Controller
     public function news()
     {
         try {
-            return view('news1');
+            return view('news');
         }
         catch (\Exception $e){
             return view('errors.error', [

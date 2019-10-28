@@ -20,8 +20,15 @@ class CategoriesController extends Controller
 
     public function index()
     {
-        $categories = $this->categoryService->getCategoryList();
-        $auth = Auth::user();
+        try {
+            $categories = $this->categoryService->getCategoryList();
+            $auth = Auth::user();
+        }
+        catch (\Exception $e){
+            return view('Errors.error', [
+                'error' => 'Cant connect to DB'
+            ]);
+        }
 
         return view('categories.categories', [
 
@@ -32,7 +39,14 @@ class CategoriesController extends Controller
 
     public function show($categoryId)
     {
-        $products = $this->categoryService->getProductsByCategory($categoryId);
+        try {
+            $products = $this->categoryService->getProductsByCategory($categoryId);
+        }
+        catch (\Exception $e){
+            return view('Errors.error', [
+                'error' => 'Cant connect to DB'
+            ]);
+        }
 
         return view('categories.category', [
 
@@ -42,28 +56,56 @@ class CategoriesController extends Controller
 
     public function update(Request $request, $categoryId)
     {
-        $this->categoryService->updateCategory($request, $categoryId);
+        try {
+            $this->categoryService->updateCategory($request, $categoryId);
+        }
+        catch (\Exception $e){
+            return view('Errors.error', [
+                'error' => 'Cant update category'
+            ]);
+        }
 
         return redirect('/categories');
     }
 
     public function edit($categoryId, \Request $request)
     {
-        $category = $this->categoryService->getCategory($categoryId);
+        try {
+            $category = $this->categoryService->getCategory($categoryId);
+        }
+        catch (\Exception $e){
+            return view('Errors.error', [
+                'error' => 'Cant connect to DB'
+            ]);
+        }
 
         return (view('categories.edit_category', compact('category')));
     }
 
     public function store(CreateCategoryRequest $request)
     {
-        $this->categoryService->createCategory($request);
+        try {
+            $this->categoryService->createCategory($request);
+        }
+        catch (\Exception $e){
+            return view('Errors.error', [
+                'error' => 'Cant connect to DB'
+            ]);
+        }
 
         return redirect('/categories');
     }
 
     public function destroy($categoryId, \Request $request)
     {
-        $this->categoryService->deleteCategory($categoryId);
+        try {
+            $this->categoryService->deleteCategory($categoryId);
+        }
+        catch (\Exception $e){
+            return view('Errors.error', [
+                'error' => 'Cant connect to DB'
+            ]);
+        }
 
         return redirect('/categories');
     }

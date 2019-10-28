@@ -28,9 +28,16 @@ class PostController
     
     public function index(GetPostRequest $request, Post $post)
     {
+        try {
             $users = User::all();
             $auth = Auth::user();
             $posts = $this->postService->getPostsList($request);
+        }
+        catch (\Exception $e){
+            return view('Errors.error', [
+                'error' => 'Cant connect to DB'
+            ]);
+        }
 
             return view('posts.posts', [
                 'posts' => $posts,
@@ -41,9 +48,15 @@ class PostController
 
     public function show($postId)
     {
-        $post = $this->postService->getPost($postId);
-        $users = User::all();
-
+        try {
+            $post = $this->postService->getPost($postId);
+            $users = User::all();
+        }
+        catch (\Exception $e){
+            return view('Errors.error', [
+                'error' => 'Cant connect to DB'
+            ]);
+        }
 
         return view('posts.post', [
             'post' => $post,
@@ -53,21 +66,43 @@ class PostController
 
     public function update($postId, Request $request)
     {
-        $post = $this->postService->updatePost($request, $postId);
+        try {
+            $post = $this->postService->updatePost($request, $postId);
+        }
+        catch (\Exception $e){
+            return view('Errors.error', [
+                'error' => 'Cant connect to DB'
+            ]);
+        }
 
         return $post;
     }
 
     public function store(CreatePostRequest $request)
     {
-        $this->postService->createPost($request);
+        try {
+            $this->postService->createPost($request);
+        }
+        catch (\Exception $e){
+            return view('Errors.error', [
+                'error' => 'Cant connect to DB'
+            ]);
+        }
 
         return redirect('/posts');
     }
 
     public function destroy($postId, \Request $request)
     {
-        $this->postService->deletePost($postId);
+        try {
+            $this->postService->deletePost($postId);
+        }
+        catch (\Exception $e){
+            return view('Errors.error', [
+                'error' => 'Cant connect to DB'
+            ]);
+        }
+
         return redirect('/posts');
     }
 }

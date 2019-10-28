@@ -11,19 +11,26 @@ class SearchController extends Controller
 {
     public function index()
     {
-        dd('Search Controller');
+
     }
 
     public function show()
     {
-        $search = Input::get('search');
-        if ($search !== null) {
-            $qq = Product::where('name', 'LIKE', '%' . $search . '%')->get();
-            $categories = Category::all();
+        try {
+            $search = Input::get('search');
+            if ($search !== null) {
+                $qq = Product::where('name', 'LIKE', '%' . $search . '%')->get();
+                $categories = Category::all();
 
-            return view('Products.search', [
-                'qq' => $qq,
-                'categories' => $categories,
+                return view('Products.search', [
+                    'qq' => $qq,
+                    'categories' => $categories,
+                ]);
+            }
+        }
+        catch (\Exception $e){
+            return view('Errors.error', [
+                'error' => 'Cant find'
             ]);
         }
         return redirect()->back();
