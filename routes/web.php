@@ -59,6 +59,8 @@ Route::get('/buy_form', 'PagesController@buy_form');
 
 Route::get('/shopping_cart', 'ProductController@getCart');
 
+Route::post('/buy_form', 'ProductController@saveCart')->name('postAct');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -6,6 +6,7 @@ use App\Http\Requests\CreateProductRequest;
 use App\Http\Services\ProductService;
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -159,5 +160,29 @@ class ProductController
             'products' => $cart->items,
             'totalPrice' => $cart->totalPrice,
         ]);
+    }
+
+    public function saveCart(Request $request)
+    {
+        if (!Session::has('cart')){
+            return view('products.shoppingCart');
+        }
+
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+
+        $order = new Order();
+        dd($request);
+        $order->user_name = $request->input('user_name');
+        $order->phone_number = $request->input('phone_number');
+        $order->address = $request->input('address');
+        $order->cart = json_encode($cart);
+        /*$order->user_name = request('user_name');
+        $order->phone_number = request('phone_number');
+        $order->address = request('address');
+        $order->cart = json_encode($cart);*/
+        $order->save();
+
+        return view('');
     }
 }
