@@ -6,6 +6,7 @@
 
 @section('content')
     <form method="post" action="{{ route('postAct') }}">
+        @csrf
             <div class="col">
                 <label for="name">Name</label>
                 <input name="user_name" type="text" class="form-control" placeholder="Enter your name" required>

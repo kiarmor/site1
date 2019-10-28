@@ -9,4 +9,7 @@
                 <h1>{{ $content->title }}</h1>
                 {{ $content->content }}
             @endif
+            @if(isset($message))
+                {{ $message }}
+            @endif
 @endsection

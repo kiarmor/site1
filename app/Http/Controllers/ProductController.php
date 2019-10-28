@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Mockery\Exception;
 use Route;
 use Session;
 use Symfony\Component\HttpFoundation\Response;
@@ -170,19 +171,25 @@ class ProductController
 
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-
         $order = new Order();
-        dd($request);
-        $order->user_name = $request->input('user_name');
-        $order->phone_number = $request->input('phone_number');
-        $order->address = $request->input('address');
-        $order->cart = json_encode($cart);
-        /*$order->user_name = request('user_name');
-        $order->phone_number = request('phone_number');
-        $order->address = request('address');
-        $order->cart = json_encode($cart);*/
-        $order->save();
 
-        return view('');
+        try {
+            $order->user_name = $request->input('user_name');
+            $order->phone_number = $request->input('phone_number');
+            $order->address = $request->input('address');
+            $order->cart = json_encode($cart);
+            $order->save();
+        }
+        catch (\Exception $e){
+            return view('Errors.error', [
+                'error' => 'Please try later'
+            ]);
+        }
+
+        Session::forget('cart');
+
+        return view('welcome', [
+            'message' => 'Success'
+        ]);
     }
 }
