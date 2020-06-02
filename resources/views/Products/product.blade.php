@@ -12,6 +12,7 @@
             <th>ID</th>
             <th>Product</th>
             <th>Description</th>
+            <th>Image</th>
             <th>Price</th>
 
             </thead>
@@ -20,6 +21,7 @@
                 <td>{{$product['id']}}</td>
                 <td>{{$product['name']}}</td>
                 <td><a>{{$product['description']}}</a></td>
+                <td> <img src="{{asset("storage/$product->img_path")}}" height="300" width="300"></td>
                 <td>{{$product->price}}</td>
 
 

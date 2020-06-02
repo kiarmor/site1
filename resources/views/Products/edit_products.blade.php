@@ -6,7 +6,7 @@
 
     <h1 class="h1">Edit product</h1>
 
-    <form method="POST" action="/products/{{$product->id}}">
+    <form method="POST" action="/products/{{$product->id}}" enctype="multipart/form-data">
         @method('PATCH')
         @csrf
 
@@ -44,16 +44,19 @@
         </div>
 
         <div class="field">
-
             <label class="label" for="price">Price</label>
-
             <div class="control">
                 <input type="number" class="input" name="price" placeholder="price" value="{{$product->price}}">
             </div>
         </div>
 
-        <div class="field">
+        <div class="form-group">
+            <label for="pr_img">Select image to upload:</label>
+            <input type="file"  name="img">
+            <img src="{{asset("storage/$product->img_path")}}" height="200" width="200">
+        </div>
 
+        <div class="field">
             <div class="control">
                 <button type="submit" class="button is-link">Update product</button>
             </div>

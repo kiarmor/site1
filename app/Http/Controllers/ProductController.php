@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Http\Services\ProductService;
 use App\Models\Cart;
 use App\Models\Category;
@@ -80,7 +81,7 @@ class ProductController
         ]);
     }
 
-    public function update($productId, Request $request)
+    public function update(UpdateProductRequest $request, $productId)
     {
         try{
         $product = $this->productService->updateProduct($request, $productId);

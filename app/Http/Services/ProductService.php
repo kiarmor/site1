@@ -10,9 +10,12 @@ namespace App\Http\Services;
 
 
 use App\Http\Requests\CreateProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class ProductService
 {
@@ -30,12 +33,18 @@ class ProductService
         $product->category_id = request('category_id');
         $product->description = request('description');
         $product->price = request('price');
+        if ($request->has('img')){
+            dd($request);
+           $product->img_path = $request->file('img')->store('/products_img', 'public');
+        }
+        else  $product->img_path = 'products_img/no_img.jpg';
+
         $product->save();
 
         return $product;
     }
 
-    public function updateProduct(Request $request, int $productId)
+    public function updateProduct(UpdateProductRequest $request, int $productId)
     {
         $product = Product::query()->findOrFail($productId);
 
@@ -43,6 +52,8 @@ class ProductService
         $product->category_id = request('category_id');
         $product->description = request('description');
         $product->price = request('price');
+        $product->img_path = $request->file('img')->store('/products_img', 'public');
+
         $product->save();
 
         return $product;

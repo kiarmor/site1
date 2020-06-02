@@ -10,13 +10,11 @@
         <span style="color: red">{{$_REQUEST['error']}}</span>
     @endif
 
-    <form method="POST" action="/products">
+    <form method="POST" action="/products" enctype="multipart/form-data">
         @csrf
-
 
         <div class="field">
             <label class="label" for="name">Name</label>
-
             <div class="control">
                 <input type="text" class="input" name="name" placeholder="Add products name">
             </div>
@@ -24,7 +22,6 @@
 
         <div class="field">
             <label class="label" for="category_id">Choose category</label>
-
             <div class="control">
                 <select  name="category_id">
                     @foreach($categories as $category)
@@ -36,25 +33,26 @@
 
         <div class="field">
             <label class="label" for="description">Description</label>
-
             <div class="control">
                 <textarea name="description" class="textarea" placeholder="Add description"></textarea>
             </div>
         </div>
 
         <div class="field">
-
             <label class="label" for="price">Price</label>
-
             <div class="control">
                 <input type="number" class="input" name="price" placeholder="price" >
             </div>
         </div>
 
-        <div class="field">
+        <div class="form-group">
+            <label for="pr_img">Select image to upload:</label>
+            <input type="file"  name="img">
+        </div>
 
+        <div class="field">
             <div class="control">
-                <button type="submit" class="button is-link">Create product</button>
+                <button type="submit" class="button btn-primary">Create product</button>
             </div>
         </div>
     </form>
