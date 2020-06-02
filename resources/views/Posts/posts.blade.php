@@ -6,7 +6,7 @@
 @section('content')
     <p>All posts</p>
 
-    <div class="container">
+    <div class="container">{{--что здесь делает этот риквест???--}}
         @if(isset($_REQUEST['error']))
             <span style="color: red">{{$_REQUEST['error']}}</span>
         @endif

@@ -35,7 +35,8 @@ class PostController
         }
         catch (\Exception $e){
             return view('Errors.error', [
-                'error' => 'Cant connect to DB'
+                'error' => 'Cant connect to DB',
+
             ]);
         }
 
