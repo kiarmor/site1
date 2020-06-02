@@ -20,8 +20,6 @@
          }
          else element.style.color = 'blue';
      }
-     //console.log(element.innerHTML = 'NEWS!!!!!!!!!!!!!!!!!!!!!!!');
-     //element.className += 'some-class';
 
 
     </script>
